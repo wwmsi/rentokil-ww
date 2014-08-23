@@ -50,7 +50,18 @@ http://www.mulesoft.org/schema/mule/ee/ftp http://www.mulesoft.org/schema/mule/e
         <set-payload value="#[payload]" doc:name="Set Payload"/>
         <data-mapper:transform config-ref="Pojo_To_XML" doc:name="Pojo To XML"/>
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
-       <!--  <ftp:outbound-endpoint host="${ftp.server.host}" port="${ftp.server.port}" responseTimeout="10000" doc:name="FTP" outputPattern="*.xml" password="${password}" user="${user}"/> -->
-        <file:outbound-endpoint path="${path.to.upload}"  responseTimeout="10000" doc:name="File" outputPattern="#[message.id].xml"/>
+        <sftp:outbound-endpoint exchange-pattern="one-way" host="${sftp.server.host}" port="${sftp.server.port}" responseTimeout="10000" doc:name="SFTP" outputPattern="#[message.id].xml" password="${password}" path="${path.to.upload}" user="${user}"/>
+        <choice-exception-strategy doc:name="Choice Exception Strategy">
+        
+        <catch-exception-strategy when="#[exception.causedBy(org.mule.api.ConnectionException)]" doc:name="Catch Exception Strategy">
+                <set-payload doc:name="Set Payload" value="The request cannot be processed, ConnectionException occured"/>
+                <logger message="The request cannot be processed, the error is #[exception.getSummaryMessage()]" level="INFO" doc:name="Logger"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="#[exception.causedBy(org.mule.api.MessagingException)]" doc:name="Catch Exception Strategy">
+                <set-payload doc:name="Set Payload" value="The request cannot be processed, MessagingException occured while processing"/>
+                <logger message="The request cannot be processed, the error is #[exception.getSummaryMessage()]" level="INFO" doc:name="Logger"/>
+            </catch-exception-strategy>
+        </choice-exception-strategy>
+        
     </flow>
 </mule>
