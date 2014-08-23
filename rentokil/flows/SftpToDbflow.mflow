@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="SftpToDbflow">
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#1">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="org.enhydra.jdbc.standard.StandardDataSource"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="msSqlDataSource"/>
+            <property name="primary"/>
+            <property name="name" value="Bean"/>
+            <property name="autowire"/>
+            <property name="destroy-method" value="shutdown"/>
+            <property name="auxiliary;index" value="2"/>
+            <property name="auxiliary;wrapIn" value="1"/>
+            <property name="depends-on"/>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;0">
+                <property name="name" value="url"/>
+                <property name="value" value="jdbc:sqlserver://${mssql.db.host};databaseName=${mssql.db.name};user=${mssql.db.user};password=${mssql.db.password}"/>
+                <property name="isProcessed$$$$ " value="true"/>
+                <property name="auxiliary;wrapIn" value="3"/>
+                <property name="auxiliary;index" value="3"/>
+            </property-collection>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;1">
+                <property name="name" value="driverName"/>
+                <property name="value" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+                <property name="isProcessed$$$$ " value="true"/>
+                <property name="auxiliary;wrapIn" value="4"/>
+                <property name="auxiliary;index" value="4"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <global-element name="CSV_To_Pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
+        <properties>
+            <property name="name" value="CSV_To_Pojo"/>
+            <property name="transformationGraphPath" value="csv_to_pojo_1.grf"/>
+            <property name="auxiliary;index" value="5"/>
+        </properties>
+    </global-element>
+    <global-element name="Pojo_To_XML" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#2">
+        <properties>
+            <property name="name" value="Pojo_To_XML"/>
+            <property name="transformationGraphPath" value="pojo_to_xml.grf"/>
+            <property name="auxiliary;index" value="6"/>
+        </properties>
+    </global-element>
+    <global-element name="FTP" type="http://www.mulesoft.org/schema/mule/ee/ftp/connector" entity-id="FTP#1">
+        <properties>
+            <property name="streaming"/>
+            <property name="moveToPattern"/>
+            <property name="binary"/>
+            <property name="d"/>
+            <property name="pollingFrequency" value="1000"/>
+            <property name="auxiliary;metamoveToDirectoryEnabled" value="false"/>
+            <property name="validateConnections" value="true"/>
+            <property name="delFiles"/>
+            <property name="dispatcherPoolFactory-ref"/>
+            <property name="moveToDirectory"/>
+            <property name="fileAge"/>
+            <property name="name" value="FTP"/>
+            <property name="passive"/>
+            <property name="connectionFactoryClass"/>
+            <property name="dynamicNotification"/>
+            <property name="cFiles"/>
+            <property name="lll"/>
+            <property name="outputPattern"/>
+            <property name="auxiliary;index" value="7"/>
+        </properties>
+    </global-element>
+    <flow SubFlow="false" name="SftpToDbflow" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a1e56cfb-ecc7-454d-94e0-ba99d50603fe">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="8"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" name="SFTP" type="http://www.mulesoft.org/schema/mule/sftp/endpoint" entity-id="SFTP#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="port" value="${sftp.server.port}"/>
+                    <property name="keepFileOnError"/>
+                    <property name="archiveTempSendingDir"/>
+                    <property name="archiveTempReceivingDir"/>
+                    <property name="password" value="${password}"/>
+                    <property name="exchange-pattern"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="duplicateHandling"/>
+                    <property name="archiveDir"/>
+                    <property name="fileAge"/>
+                    <property name="sizeCheckWaitTime"/>
+                    <property name="path" value="${path.to.download}"/>
+                    <property name="encoding"/>
+                    <property name="autoDelete"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="outputPattern"/>
+                    <property name="auxiliary;index" value="9"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="mimeType"/>
+                    <property name="tempDir"/>
+                    <property name="host" value="${sftp.server.host}"/>
+                    <property name="passphrase"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="pollingFrequency"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="useTempFileTimestampSuffix"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="address"/>
+                    <property name="identityFile"/>
+                    <property name="user" value="${user}"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+            <pattern name="Object to Byte Array" type="http://www.mulesoft.org/schema/mule/core/object-to-byte-array-transformer" entity-id="Object to Byte Array#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="mimeType"/>
+                    <property name="auxiliary;index" value="10"/>
+                </properties>
+            </pattern>
+            <pattern name="Message Properties" type="http://www.mulesoft.org/schema/mule/core/message-properties-transformer" entity-id="Message Properties#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="scope"/>
+                    <property name="overwrite"/>
+                    <property name="encoding"/>
+                    <property name="mimeType"/>
+                    <property name="auxiliary;index" value="11"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/core/add-message-property;0">
+                        <property name="value" value="#[payload]"/>
+                        <property name="auxiliary;wrapIn" value="12"/>
+                        <property name="auxiliary;index" value="12"/>
+                        <property name="key" value="SftpPayload"/>
+                    </property-collection>
+                </properties>
+            </pattern>
+            <pattern name="Database" type="http://www.mulesoft.org/schema/mule/db/database-connector" entity-id="Database#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name=""/>
+                    <property name="source"/>
+                    <property name="autoGeneratedKeysColumnNames"/>
+                    <property name="transactionalAction"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/db/insert"/>
+                    <property name="target"/>
+                    <property name="autoGeneratedKeysColumnIndexes"/>
+                    <property name="config-ref" value="MySQL_Configuration"/>
+                    <property name="autoGeneratedKeys"/>
+                    <property name="auxiliary;index" value="13"/>
+                    <property name="bulkMode"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/db/parameterized-query;0">
+                        <property name="text" value="insert into Rentokil_Order( MessageId,CSVFILE,TS) values (#[message.id],#[payload],#[server.dateTime.format(&quot;yyyy-MM-dd HH:mm:ss&quot;)])"/>
+                        <property name="auxiliary;wrapIn" value="14"/>
+                        <property name="auxiliary;index" value="14"/>
+                    </property-collection>
+                </properties>
+            </pattern>
+            <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="message" value="db response:#[payload]"/>
+                    <property name="category"/>
+                    <property name="level" value="INFO"/>
+                    <property name="auxiliary;index" value="15"/>
+                </properties>
+            </pattern>
+            <pattern name="Java" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="class" value="com.ww.rentokil.processor.FileStreamProcessor"/>
+                    <property name="auxiliary;index" value="16"/>
+                </properties>
+            </pattern>
+            <pattern name="CSV To Pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#3">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="input-ref"/>
+                    <property name="stream"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
+                    <property name="target"/>
+                    <property name="config-ref" value="CSV_To_Pojo"/>
+                    <property name="pipeSize"/>
+                    <property name="auxiliary;index" value="17"/>
+                </properties>
+            </pattern>
+            <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="message" value="#[payload]"/>
+                    <property name="category"/>
+                    <property name="level" value="INFO"/>
+                    <property name="auxiliary;index" value="18"/>
+                </properties>
+            </pattern>
+            <pattern name="Java" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="class" value="com.ww.rentokil.processor.SftpFileProcessor"/>
+                    <property name="auxiliary;index" value="19"/>
+                </properties>
+            </pattern>
+            <pattern name="Flow Reference" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="name" value="DbToFtpSubflow"/>
+                    <property name="auxiliary;index" value="20"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="DbToFtpSubflow" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6064a783-dab6-40a8-ab85-71a7a2431b06">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="21"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[payload]"/>
+                    <property name="auxiliary;index" value="22"/>
+                </properties>
+            </pattern>
+            <pattern name="Pojo To XML" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#4">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="input-ref"/>
+                    <property name="stream"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
+                    <property name="target"/>
+                    <property name="config-ref" value="Pojo_To_XML"/>
+                    <property name="pipeSize"/>
+                    <property name="auxiliary;index" value="23"/>
+                </properties>
+            </pattern>
+            <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#3">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="message" value="#[payload]"/>
+                    <property name="category"/>
+                    <property name="level" value="INFO"/>
+                    <property name="auxiliary;index" value="24"/>
+                </properties>
+            </pattern>
+            <endpoint direction="Outbound" name="File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="businessEventsLabel" value=""/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="tracking:enable-default-events" value="false"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="updated"/>
+                    <property name="address" value=""/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="path" value="${path.to.upload}"/>
+                    <property name="encoding" value=""/>
+                    <property name="outputPattern" value="#[message.id].xml"/>
+                    <property name="auxiliary;index" value="25"/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

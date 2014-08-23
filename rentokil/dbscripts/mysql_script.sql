@@ -1,0 +1,5 @@
+CREATE TABLE `magento_dev`.`Rentokil_Order` (
+  `MessageId` VARCHAR(60) NOT NULL,
+  `CSVFILE` MEDIUMTEXT  NOT NULL,
+  `TS` TIMESTAMP NOT NULL
+)

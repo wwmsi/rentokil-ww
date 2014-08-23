@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph __version="3.5.0" author="yuppala" created="Fri Aug 22 10:16:45 IST 2014" description="Pojo To XML" guiVersion="3.4.3.P" id="1408700765330" licenseCode="Unlicensed" licenseType="Unknown" modified="Fri Aug 22 10:16:45 IST 2014" modifiedBy="yuppala" name="Pojo_To_XML" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __schemaType="orderType" __sourcePath="{}/order" _dataStructure="OBJECT" _id="__id" _type="Output" id="2b8ad0e4-6a25-48e5-aee7-37f0816afa1a">
+<Record fieldDelimiter="," name="order" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __cdata="false" __index="0" __schemaType="orderType" __sourcePath="{}/order/OrderNumber" containerType="SINGLE" label="OrderNumber" name="OrderNumber" type="string"/>
+<Field __index="1" __schemaType="orderType" __sourcePath="{}/order/AccountName" containerType="SINGLE" label="AccountName" name="AccountName" type="string"/>
+<Field __cdata="false" __index="2" __schemaType="orderType" __sourcePath="{}/order/ContactNumber" containerType="SINGLE" label="ContactNumber" name="ContactNumber" type="string"/>
+<Field __index="3" __schemaType="orderType" __sourcePath="{}/order/OrderAmount" containerType="SINGLE" label="OrderAmount" name="OrderAmount" type="integer"/>
+<Field __index="4" __schemaType="orderType" __sourcePath="{}/order/OrderStatus" containerType="SINGLE" label="OrderStatus" name="OrderStatus" type="string"/>
+<Field __index="5" __schemaType="orderType" __sourcePath="{}/order/BillingAddress" containerType="SINGLE" label="BillingAddress" name="BillingAddress" type="string"/>
+<Field __index="6" __schemaType="orderType" __sourcePath="{}/order/ShippingAddress" containerType="SINGLE" label="ShippingAddress" name="ShippingAddress" type="string"/>
+<Field __index="7" __schemaType="orderType" __sourcePath="{}/order/CreatdBy" containerType="SINGLE" label="CreatdBy" name="CreatdBy" type="string"/>
+<Field __index="8" __schemaType="orderType" __sourcePath="{}/order/ActivatedBy" containerType="SINGLE" label="ActivatedBy" name="ActivatedBy" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="3b8d4e24-2ba5-474e-8b7e-614ed065ee2a">
+<Record fieldDelimiter="," name="OrderVo" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/accountName" containerType="SINGLE" label="accountName" name="accountName" type="string"/>
+<Field __index="1" __sourcePath="{}/object/activatedBy" containerType="SINGLE" label="activatedBy" name="activatedBy" type="string"/>
+<Field __index="2" __sourcePath="{}/object/billingAddress" containerType="SINGLE" label="billingAddress" name="billingAddress" type="string"/>
+<Field __index="3" __sourcePath="{}/object/contactNumber" containerType="SINGLE" label="contactNumber" name="contactNumber" type="string"/>
+<Field __index="4" __sourcePath="{}/object/creatdBy" containerType="SINGLE" label="creatdBy" name="creatdBy" type="string"/>
+<Field __index="5" __sourcePath="{}/object/orderAmount" containerType="SINGLE" label="orderAmount" name="orderAmount" type="string"/>
+<Field __index="6" __sourcePath="{}/object/orderNumber" containerType="SINGLE" label="orderNumber" name="orderNumber" type="string"/>
+<Field __index="7" __sourcePath="{}/object/orderStatus" containerType="SINGLE" label="orderStatus" name="orderStatus" type="string"/>
+<Field __index="8" __sourcePath="{}/object/shippingAddress" containerType="SINGLE" label="shippingAddress" name="shippingAddress" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="accountName" trim="true" xpath="accountName"/>
+  <Mapping cloverField="activatedBy" trim="true" xpath="activatedBy"/>
+  <Mapping cloverField="billingAddress" trim="true" xpath="billingAddress"/>
+  <Mapping cloverField="contactNumber" trim="true" xpath="contactNumber"/>
+  <Mapping cloverField="creatdBy" trim="true" xpath="creatdBy"/>
+  <Mapping cloverField="orderAmount" trim="true" xpath="orderAmount"/>
+  <Mapping cloverField="orderNumber" trim="true" xpath="orderNumber"/>
+  <Mapping cloverField="orderStatus" trim="true" xpath="orderStatus"/>
+  <Mapping cloverField="shippingAddress" trim="true" xpath="shippingAddress"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<schema-object>
+  <typed-object-ref type-ref="com.ww.rentokil.vo.OrderVo"/>
+  <typed-object type="com.ww.rentokil.vo.OrderVo">
+    <typed-object-ref name="accountName" type-ref="java.lang.String"/>
+    <typed-object-ref name="activatedBy" type-ref="java.lang.String"/>
+    <typed-object-ref name="billingAddress" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactNumber" type-ref="java.lang.String"/>
+    <typed-object-ref name="creatdBy" type-ref="java.lang.String"/>
+    <typed-object-ref name="orderAmount" type-ref="java.lang.String"/>
+    <typed-object-ref name="orderNumber" type-ref="java.lang.String"/>
+    <typed-object-ref name="orderStatus" type-ref="java.lang.String"/>
+    <typed-object-ref name="shippingAddress" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.lang.String"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER" xmlSchemaURL=".\src\test\resources\order.xsd">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<order xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <OrderNumber>$0.OrderNumber</OrderNumber>
+  <AccountName>$0.AccountName</AccountName>
+  <ContactNumber>$0.ContactNumber</ContactNumber>
+  <OrderAmount>$0.OrderAmount</OrderAmount>
+  <OrderStatus>$0.OrderStatus</OrderStatus>
+  <BillingAddress>$0.BillingAddress</BillingAddress>
+  <ShippingAddress>$0.ShippingAddress</ShippingAddress>
+  <CreatdBy>$0.CreatdBy</CreatdBy>
+  <ActivatedBy>$0.ActivatedBy</ActivatedBy>
+</order>]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[order]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'order'" guiX="460" guiY="20" id="FOREACH_OBJECT_ORDER" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.AccountName = input.accountName;
+output.ActivatedBy = input.activatedBy;
+output.BillingAddress = input.billingAddress+"WW Madhapur, PIN-500082";
+output.ContactNumber =  input.contactNumber;
+output.CreatdBy = input.creatdBy;
+output.OrderAmount = (isnull(input.orderAmount) ? null : str2integer(input.orderAmount)) + (isnull(input.orderAmount) ? null : str2integer(input.orderAmount));
+output.OrderNumber = input.orderNumber;
+output.OrderStatus = (isnull(input.orderStatus)) ? null:"In Active";
+output.ShippingAddress = input.shippingAddress;
+]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="3b8d4e24-2ba5-474e-8b7e-614ed065ee2a" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_ORDER:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_ORDER:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="2b8ad0e4-6a25-48e5-aee7-37f0816afa1a" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+</Phase>
+</Graph>
