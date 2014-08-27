@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ww.rentokil</groupId>
@@ -51,7 +50,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -180,7 +179,7 @@
                         <configuration>
                             <tasks>
                                 <!-- Using an ant task to deflate cloveretl-engine.zip -->
-                                <unzip src="${project.build.testOutputDirectory}/cloveretl-engine.zip" dest="${project.build.testOutputDirectory}" />
+                                <unzip dest="${project.build.testOutputDirectory}" src="${project.build.testOutputDirectory}/cloveretl-engine.zip"/>
                             </tasks>
                         </configuration>
                         <goals>
@@ -189,8 +188,27 @@
                     </execution>
                 </executions>
             </plugin>
-		</plugins>
-	</build>
+		<plugin>
+                <groupId>org.mule.munit.tools</groupId>
+                <artifactId>munit-maven-plugin</artifactId>
+                <version>3.5-M2</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+	<testResources>
+            <testResource>
+                <directory>src/test/munit</directory>
+            </testResource>
+        </testResources>
+    </build>
 
 	<!-- plugins for creating site reports -->
 	<reporting>
@@ -406,7 +424,37 @@
 			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
-		</dependencies>
+		<dependency>
+            <groupId>org.mule.munit</groupId>
+            <artifactId>munit-assert</artifactId>
+            <version>3.5-M2</version>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.mule.munit</groupId>
+            <artifactId>munit-mock</artifactId>
+            <version>3.5-M2</version>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.mule.munit</groupId>
+            <artifactId>munit-common</artifactId>
+            <version>3.5-M2</version>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.mule.munit</groupId>
+            <artifactId>munit-runner</artifactId>
+            <version>3.5-M2</version>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-interceptor-module</artifactId>
+            <version>3.5-M2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 	<repositories>
           <repository>
