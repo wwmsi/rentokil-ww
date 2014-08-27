@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import junit.framework.Assert;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,17 +21,18 @@ import org.mule.tck.junit4.AbstractMuleContextTestCase;
 
 public class TestFileStreamProcessor extends AbstractMuleContextTestCase {
 	private static Logger logger = Logger.getLogger(TestFileStreamProcessor.class);
-	public FileStreamProcessor fsp;
-	public MuleMessage muleMessage;
+	private FileStreamProcessor fsp;
+	private MuleMessage muleMessage;
+	private byte[] sftpPayload;
 	private static final String SFTP_PAYLOAD = "SftpPayload";
 
 	@Before
 	public void setUp() throws Exception {
 		fsp = new FileStreamProcessor();
 		muleMessage = testMuleMessageConstruct();
-		muleMessage.setOutboundProperty(SFTP_PAYLOAD, getSftpPayloadAsBytes());
-
-
+		sftpPayload=getSftpPayloadAsBytes();
+		//muleMessage.setOutboundProperty(SFTP_PAYLOAD, getSftpPayloadAsBytes());
+		muleMessage.setOutboundProperty(SFTP_PAYLOAD, sftpPayload);
 	}
 
 	public MuleMessage testMuleMessageConstruct() throws Exception {
@@ -57,10 +61,11 @@ public class TestFileStreamProcessor extends AbstractMuleContextTestCase {
 		// setting a condition
 		when(eventContext.getMessage()).thenReturn(muleMessage);
 		// actual call
-		fsp.onCall(eventContext);
+		InputStream resStream = (InputStream) fsp.onCall(eventContext);
+		Assert.assertNotNull(resStream);
 		MuleMessage res = eventContext.getMessage();
 		assertEquals("Event to Read Orders", res.getOriginalPayload());
-
+		assertEquals(sftpPayload.length, IOUtils.toByteArray(resStream).length);
 	}
 
 }
