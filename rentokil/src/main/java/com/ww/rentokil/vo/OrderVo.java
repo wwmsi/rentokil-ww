@@ -11,6 +11,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Order")
 public class OrderVo implements Serializable {
 
+	public OrderVo(String orderNumber, String accountName,
+			String contactNumber, String orderAmount, String orderStatus,
+			String billingAddress, String shippingAddress, String creatdBy,
+			String activatedBy) {
+		super();
+		this.orderNumber = orderNumber;
+		this.accountName = accountName;
+		this.contactNumber = contactNumber;
+		this.orderAmount = orderAmount;
+		this.orderStatus = orderStatus;
+		this.billingAddress = billingAddress;
+		this.shippingAddress = shippingAddress;
+		this.creatdBy = creatdBy;
+		this.activatedBy = activatedBy;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@XmlAttribute(name = "orderNumber")
