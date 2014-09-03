@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Order")
 public class OrderVo implements Serializable {
 
-	public OrderVo(String orderNumber, String accountName,
+	/*public OrderVo(String orderNumber, String accountName,
 			String contactNumber, String orderAmount, String orderStatus,
 			String billingAddress, String shippingAddress, String creatdBy,
 			String activatedBy) {
@@ -25,7 +25,7 @@ public class OrderVo implements Serializable {
 		this.shippingAddress = shippingAddress;
 		this.creatdBy = creatdBy;
 		this.activatedBy = activatedBy;
-	}
+	}*/
 
 	private static final long serialVersionUID = 1L;
 
