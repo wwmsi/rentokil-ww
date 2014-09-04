@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ww.rentokil.processor;
+package com.ww.rentokil.processor.junit;
 
 import java.io.File;
 import java.io.FileInputStream;

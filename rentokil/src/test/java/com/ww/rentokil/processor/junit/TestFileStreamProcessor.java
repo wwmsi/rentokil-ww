@@ -1,4 +1,4 @@
-package com.ww.rentokil.processor;
+package com.ww.rentokil.processor.junit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mule.api.MuleEventContext;
 import org.mule.api.MuleMessage;
+
+import com.ww.rentokil.processor.FileStreamProcessor;
 
 /**
  * @author skambhammettu
@@ -33,7 +35,7 @@ public class TestFileStreamProcessor extends RentokilTestCase {
 
 	/**
 	 * Test method for
-	 * {@link com.ww.rentokil.processor.TestFileStreamProcessor#onCall(org.mule.api.MuleEventContext)}
+	 * {@link com.ww.rentokil.processor.junit.TestFileStreamProcessor#onCall(org.mule.api.MuleEventContext)}
 	 * .
 	 */
 	@Test

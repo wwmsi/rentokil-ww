@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ww.rentokil.processor;
+package com.ww.rentokil.processor.junit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mule.api.MuleEventContext;
 import org.mule.api.MuleMessage;
 
+import com.ww.rentokil.processor.SftpFileProcessor;
 import com.ww.rentokil.vo.OrderVo;
 
 /**
