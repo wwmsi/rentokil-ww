@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<project name="setup-local-dev" default="build" basedir=".">	
-	<property environment="env"/>
+<project name="setup-local-dev" default="build" basedir=".">
+	<property environment="env" />
 	<property name="project.dir" value="../../.." />
 	<property name="build.info.dir" value="../build-info" />
 	<property name="resource.dir" value="../resources" />
@@ -30,7 +30,8 @@
 	<target name="rentokil-build" depends="rentokil-eclipse" description="cleans and builds">
 		<exec dir="${project.dir}" executable="cmd.exe">
 			<arg value="/c" />
-			<arg value="mvn install" />
+			<!-- <arg value="mvn install" /> -->
+			<arg value="mvn -Dmaven.test.skip=true clean package" />
 		</exec>
 	</target>
 
