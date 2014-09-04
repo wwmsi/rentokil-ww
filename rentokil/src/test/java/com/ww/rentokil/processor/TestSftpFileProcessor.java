@@ -36,10 +36,20 @@ public class TestSftpFileProcessor extends RentokilTestCase {
 	}
 
 	public OrderVo getOrderVo() {
-		OrderVo orderVo = null;
+		/*OrderVo orderVo = null;
 		// create mock response
 		orderVo = new OrderVo("7867", "MyOrders", "9008172829", "2000",
-				"Enable", "Hyd", "US", "SFUser", "SFUser");
+				"Enable", "Hyd", "US", "SFUser", "SFUser");*/
+		OrderVo orderVo = new OrderVo();
+		orderVo.setAccountName("MyOrders");
+		orderVo.setActivatedBy("SFUser");
+		orderVo.setBillingAddress("Hyd");
+		orderVo.setContactNumber("9008172829");
+		orderVo.setCreatdBy("SFUser");
+		orderVo.setOrderAmount("2000");
+		orderVo.setOrderNumber("7867");
+		orderVo.setOrderStatus("Enable");
+		orderVo.setShippingAddress("US");
 		return orderVo;
 	}
 
